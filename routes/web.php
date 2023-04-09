@@ -51,6 +51,8 @@ Route::group(['prefix' => '/cart', 'controller' => CartController::class], funct
     Route::get('/{product}/remove', 'remove')->name('cart.remove');
 });
 
+Route::get("product", [ProductController::class, "product"])->name("product");
+
 Route::group(["prefix" => "/products", "controller" => ProductController::class], function () {
    Route::get("/", "products")->name("products.index");
    Route::get("/{product}", "product")->name("products.show");

@@ -16,13 +16,16 @@ class MainController extends Controller
 {
     public function homepage()
     {
+
         $banners = Banner::where("is_active",1)->get();
         $blogs = Blog::all();
+        $products = Product::where("is_active", 1)->get();
         $categories = Category::all();
         return view("homepage", [
             "categories"=> $categories,
             "banners" => $banners,
             "blogs"=> $blogs,
+            "products" => $products
         ]);
     }
 

@@ -9,9 +9,12 @@ use http\Env\Request;
 class ProductController
 {
     public function product(Product $product)
+
     {
+        $categories = Category::all();
         return view('product', [
-            'product' => $product
+            'product' => $product,
+            "categories"=> $categories
         ]);
     }
 

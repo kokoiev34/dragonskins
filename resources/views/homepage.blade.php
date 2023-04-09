@@ -41,21 +41,23 @@
                             <p class="main__offers-btn">See all</p>
                         </div>
                         <div class="main__offers-cards">
-                            <a href="product.html">
+                            @foreach($products as $product)
+                                <a href="">
                                 <div class="main__offers-card">
-                                    <p class="card-title">P250 Visions</p>
-                                    <div class="card-img"></div>
+                                    <p class="card-title">{{ $product->hash_name }}</p>
+                                    <div class="card-img" style="background-image: url({{ asset($product->image) }})"></div>
                                     <div class="card-wrapper">
                                         <div class="card-statrak">StatTrak™</div>
-                                        <div class="card-rarity">Classified</div>
+                                        <div class="card-rarity">{{ $product->rarity }}</div>
                                     </div>
-                                    <p class="card-price">€9,90</p>
-{{--                                    <form action="{{ route('cart.add', ['product' => $product->id]) }}" method="POST" >--}}
-{{--                                        @csrf--}}
-                                    <div class="card-cart-btn"></div>
+                                    <p class="card-price">{{$product->currency . " " . $product->price }}</p>
+                                    <form action="{{ route('cart.add', ['product' => $product->id]) }}" method="POST" >
+                                        @csrf
+                                    <button class="card-cart-btn" type="submit"></button>
+                                    </form>
                                     <div class="card-float">
                                         <p class="card-float-title">Minimal wear</p>
-                                        <span class="card-float-rate">0.13</span>
+                                        <span class="card-float-rate">{{ $product->float_rate }}</span>
                                     </div>
                                     <div class="card-float-scale">
                                         <div class="card-float-scale1"></div>
@@ -65,280 +67,8 @@
                                         <div class="card-float-scale5"></div>
                                     </div>
                                 </div>
-                            </a>
-                            <div class="main__offers-card">
-                                <p class="card-title">P250 Visions</p>
-                                <div class="card-img"></div>
-                                <div class="card-wrapper">
-                                    <div class="card-statrak">StatTrak™</div>
-                                    <div class="card-rarity">Classified</div>
-                                </div>
-                                <p class="card-price">€9,90</p>
-                                <div class="card-cart-btn"></div>
-                                <div class="card-float">
-                                    <p class="card-float-title">Minimal wear</p>
-                                    <span class="card-float-rate">0.13</span>
-                                </div>
-                                <div class="card-float-scale">
-                                    <div class="card-float-scale1"></div>
-                                    <div class="card-float-scale2"></div>
-                                    <div class="card-float-scale3"></div>
-                                    <div class="card-float-scale4"></div>
-                                    <div class="card-float-scale5"></div>
-                                </div>
-                            </div>
-                            <div class="main__offers-card">
-                                <p class="card-title">P250 Visions</p>
-                                <div class="card-img"></div>
-                                <div class="card-wrapper">
-                                    <div class="card-statrak">StatTrak™</div>
-                                    <div class="card-rarity">Classified</div>
-                                </div>
-                                <p class="card-price">€9,90</p>
-                                <div class="card-cart-btn"></div>
-                                <div class="card-float">
-                                    <p class="card-float-title">Minimal wear</p>
-                                    <span class="card-float-rate">0.13</span>
-                                </div>
-                                <div class="card-float-scale">
-                                    <div class="card-float-scale1"></div>
-                                    <div class="card-float-scale2"></div>
-                                    <div class="card-float-scale3"></div>
-                                    <div class="card-float-scale4"></div>
-                                    <div class="card-float-scale5"></div>
-                                </div>
-                            </div>
-                            <div class="main__offers-card">
-                                <p class="card-title">P250 Visions</p>
-                                <div class="card-img"></div>
-                                <div class="card-wrapper">
-                                    <div class="card-statrak">StatTrak™</div>
-                                    <div class="card-rarity">Classified</div>
-                                </div>
-                                <p class="card-price">€9,90</p>
-                                <div class="card-cart-btn"></div>
-                                <div class="card-float">
-                                    <p class="card-float-title">Minimal wear</p>
-                                    <span class="card-float-rate">0.13</span>
-                                </div>
-                                <div class="card-float-scale">
-                                    <div class="card-float-scale1"></div>
-                                    <div class="card-float-scale2"></div>
-                                    <div class="card-float-scale3"></div>
-                                    <div class="card-float-scale4"></div>
-                                    <div class="card-float-scale5"></div>
-                                </div>
-                            </div>
-                            <div class="main__offers-card">
-                                <p class="card-title">P250 Visions</p>
-                                <div class="card-img"></div>
-                                <div class="card-wrapper">
-                                    <div class="card-statrak">StatTrak™</div>
-                                    <div class="card-rarity">Classified</div>
-                                </div>
-                                <p class="card-price">€9,90</p>
-                                <div class="card-cart-btn"></div>
-                                <div class="card-float">
-                                    <p class="card-float-title">Minimal wear</p>
-                                    <span class="card-float-rate">0.13</span>
-                                </div>
-                                <div class="card-float-scale">
-                                    <div class="card-float-scale1"></div>
-                                    <div class="card-float-scale2"></div>
-                                    <div class="card-float-scale3"></div>
-                                    <div class="card-float-scale4"></div>
-                                    <div class="card-float-scale5"></div>
-                                </div>
-                            </div>
-                            <div class="main__offers-card">
-                                <p class="card-title">P250 Visions</p>
-                                <div class="card-img"></div>
-                                <div class="card-wrapper">
-                                    <div class="card-statrak">StatTrak™</div>
-                                    <div class="card-rarity">Classified</div>
-                                </div>
-                                <p class="card-price">€9,90</p>
-                                <div class="card-cart-btn"></div>
-                                <div class="card-float">
-                                    <p class="card-float-title">Minimal wear</p>
-                                    <span class="card-float-rate">0.13</span>
-                                </div>
-                                <div class="card-float-scale">
-                                    <div class="card-float-scale1"></div>
-                                    <div class="card-float-scale2"></div>
-                                    <div class="card-float-scale3"></div>
-                                    <div class="card-float-scale4"></div>
-                                    <div class="card-float-scale5"></div>
-                                </div>
-                            </div>
-                            <div class="main__offers-card">
-                                <p class="card-title">P250 Visions</p>
-                                <div class="card-img"></div>
-                                <div class="card-wrapper">
-                                    <div class="card-statrak">StatTrak™</div>
-                                    <div class="card-rarity">Classified</div>
-                                </div>
-                                <p class="card-price">€9,90</p>
-                                <div class="card-cart-btn"></div>
-                                <div class="card-float">
-                                    <p class="card-float-title">Minimal wear</p>
-                                    <span class="card-float-rate">0.13</span>
-                                </div>
-                                <div class="card-float-scale">
-                                    <div class="card-float-scale1"></div>
-                                    <div class="card-float-scale2"></div>
-                                    <div class="card-float-scale3"></div>
-                                    <div class="card-float-scale4"></div>
-                                    <div class="card-float-scale5"></div>
-                                </div>
-                            </div>
-                            <div class="main__offers-card">
-                                <p class="card-title">P250 Visions</p>
-                                <div class="card-img"></div>
-                                <div class="card-wrapper">
-                                    <div class="card-statrak">StatTrak™</div>
-                                    <div class="card-rarity">Classified</div>
-                                </div>
-                                <p class="card-price">€9,90</p>
-                                <div class="card-cart-btn"></div>
-                                <div class="card-float">
-                                    <p class="card-float-title">Minimal wear</p>
-                                    <span class="card-float-rate">0.13</span>
-                                </div>
-                                <div class="card-float-scale">
-                                    <div class="card-float-scale1"></div>
-                                    <div class="card-float-scale2"></div>
-                                    <div class="card-float-scale3"></div>
-                                    <div class="card-float-scale4"></div>
-                                    <div class="card-float-scale5"></div>
-                                </div>
-                            </div>
-                            <div class="main__offers-card">
-                                <p class="card-title">P250 Visions</p>
-                                <div class="card-img"></div>
-                                <div class="card-wrapper">
-                                    <div class="card-statrak">StatTrak™</div>
-                                    <div class="card-rarity">Classified</div>
-                                </div>
-                                <p class="card-price">€9,90</p>
-                                <div class="card-cart-btn"></div>
-                                <div class="card-float">
-                                    <p class="card-float-title">Minimal wear</p>
-                                    <span class="card-float-rate">0.13</span>
-                                </div>
-                                <div class="card-float-scale">
-                                    <div class="card-float-scale1"></div>
-                                    <div class="card-float-scale2"></div>
-                                    <div class="card-float-scale3"></div>
-                                    <div class="card-float-scale4"></div>
-                                    <div class="card-float-scale5"></div>
-                                </div>
-                            </div>
-                            <div class="main__offers-card">
-                                <p class="card-title">P250 Visions</p>
-                                <div class="card-img"></div>
-                                <div class="card-wrapper">
-                                    <div class="card-statrak">StatTrak™</div>
-                                    <div class="card-rarity">Classified</div>
-                                </div>
-                                <p class="card-price">€9,90</p>
-                                <div class="card-cart-btn"></div>
-                                <div class="card-float">
-                                    <p class="card-float-title">Minimal wear</p>
-                                    <span class="card-float-rate">0.13</span>
-                                </div>
-                                <div class="card-float-scale">
-                                    <div class="card-float-scale1"></div>
-                                    <div class="card-float-scale2"></div>
-                                    <div class="card-float-scale3"></div>
-                                    <div class="card-float-scale4"></div>
-                                    <div class="card-float-scale5"></div>
-                                </div>
-                            </div>
-                            <div class="main__offers-card">
-                                <p class="card-title">P250 Visions</p>
-                                <div class="card-img"></div>
-                                <div class="card-wrapper">
-                                    <div class="card-statrak">StatTrak™</div>
-                                    <div class="card-rarity">Classified</div>
-                                </div>
-                                <p class="card-price">€9,90</p>
-                                <div class="card-cart-btn"></div>
-                                <div class="card-float">
-                                    <p class="card-float-title">Minimal wear</p>
-                                    <span class="card-float-rate">0.13</span>
-                                </div>
-                                <div class="card-float-scale">
-                                    <div class="card-float-scale1"></div>
-                                    <div class="card-float-scale2"></div>
-                                    <div class="card-float-scale3"></div>
-                                    <div class="card-float-scale4"></div>
-                                    <div class="card-float-scale5"></div>
-                                </div>
-                            </div>
-                            <div class="main__offers-card">
-                                <p class="card-title">P250 Visions</p>
-                                <div class="card-img"></div>
-                                <div class="card-wrapper">
-                                    <div class="card-statrak">StatTrak™</div>
-                                    <div class="card-rarity">Classified</div>
-                                </div>
-                                <p class="card-price">€9,90</p>
-                                <div class="card-cart-btn"></div>
-                                <div class="card-float">
-                                    <p class="card-float-title">Minimal wear</p>
-                                    <span class="card-float-rate">0.13</span>
-                                </div>
-                                <div class="card-float-scale">
-                                    <div class="card-float-scale1"></div>
-                                    <div class="card-float-scale2"></div>
-                                    <div class="card-float-scale3"></div>
-                                    <div class="card-float-scale4"></div>
-                                    <div class="card-float-scale5"></div>
-                                </div>
-                            </div>
-                            <div class="main__offers-card">
-                                <p class="card-title">P250 Visions</p>
-                                <div class="card-img"></div>
-                                <div class="card-wrapper">
-                                    <div class="card-statrak">StatTrak™</div>
-                                    <div class="card-rarity">Classified</div>
-                                </div>
-                                <p class="card-price">€9,90</p>
-                                <div class="card-cart-btn"></div>
-                                <div class="card-float">
-                                    <p class="card-float-title">Minimal wear</p>
-                                    <span class="card-float-rate">0.13</span>
-                                </div>
-                                <div class="card-float-scale">
-                                    <div class="card-float-scale1"></div>
-                                    <div class="card-float-scale2"></div>
-                                    <div class="card-float-scale3"></div>
-                                    <div class="card-float-scale4"></div>
-                                    <div class="card-float-scale5"></div>
-                                </div>
-                            </div>
-                            <div class="main__offers-card">
-                                <p class="card-title">P250 Visions</p>
-                                <div class="card-img"></div>
-                                <div class="card-wrapper">
-                                    <div class="card-statrak">StatTrak™</div>
-                                    <div class="card-rarity">Classified</div>
-                                </div>
-                                <p class="card-price">€9,90</p>
-                                <div class="card-cart-btn"></div>
-                                <div class="card-float">
-                                    <p class="card-float-title">Minimal wear</p>
-                                    <span class="card-float-rate">0.13</span>
-                                </div>
-                                <div class="card-float-scale">
-                                    <div class="card-float-scale1"></div>
-                                    <div class="card-float-scale2"></div>
-                                    <div class="card-float-scale3"></div>
-                                    <div class="card-float-scale4"></div>
-                                    <div class="card-float-scale5"></div>
-                                </div>
-                            </div>
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
