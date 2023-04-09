@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
@@ -25,9 +26,7 @@ Route::get("/app",[MainController::class, "app"])->name("app");
 Route::get("/export-excel", [MainController::class, "exportExcel"])->name("export.excel");
 Route::get("/upload-excel", [MainController::class, "uploadExcel"])->name("upload.excel");
 Route::get("/knives", [MainController::class, "knives"])->name("knives");
-//Route::get("/account", [MainController::class, "account"])->name("auth.account");
 
-//Route::get("/settings", [AccountController::class, "settings"])->name("auth.settings");
 Route::group(['prefix' => '/account', 'controller' => AccountController::class, 'middleware' => 'auth'], function () {
     Route::get('/', 'account')->name('account.show');
     Route::post('/', 'updateAccount')->name('account.update');
@@ -44,6 +43,7 @@ Route::group(["controller" => AuthController::class], function () {
     Route::get("/register", "getRegisterPage")->name("auth.registerPage");
     Route::post("/register", "register")->name("auth.register");
     Route::get("/logout", "logout")->name("auth.logout");
+});
 
 Route::group(['prefix' => '/cart', 'controller' => CartController::class], function () {
     Route::get('/', 'getCart')->name('cart.get');
@@ -51,5 +51,7 @@ Route::group(['prefix' => '/cart', 'controller' => CartController::class], funct
     Route::get('/{product}/remove', 'remove')->name('cart.remove');
 });
 
+Route::group(["prefix" => "/products", "controller" => ProductController::class], function () {
+   Route::get("/", "products")->name("products.index");
+   Route::get("/{product}", "product")->name("products.show");
 });
-
