@@ -42,7 +42,17 @@
                             <input type="text" name="city" class="settings__block-container-surname city" placeholder="City" value="{{ $user->information?->city }}">
                         </div>
                         <div class="settings__block-container">
-                            <input type="text" name="country" class="settings__block-container-name country" placeholder="Country" value="{{ $user->information?->country }}">
+{{--                            <input type="text" name="country" class="settings__block-container-name country" placeholder="Country" value="{{ $user->information?->country }}">--}}
+                            <select name="country" class="settings__block-container-name country">
+                                <option value=""></option>
+                                @foreach($geos as $key => $geo)
+                                    @if($user->information?->country == $key)
+                                        <option value="{{ $key }}" selected>{{ $geo->native }}</option>
+                                    @else
+                                        <option value="{{ $key }}"> {{ $geo->native }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
                         <button type="submit"><div class="settings__block-container-button">SAVE</div></button>
                     </div>

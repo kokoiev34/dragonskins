@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Country;
 use App\Models\Category;
 use App\Services\AccountService;
 use Illuminate\Http\Request;
@@ -13,11 +14,12 @@ class AccountController
 
     public function account()
     {
-
+        $geos = Country::getAllGeos();
         $categories = Category::all();
         return view("auth.settings", [
             "user" => Auth::user(),
-            "categories" => $categories
+            "categories" => $categories,
+            "geos" => $geos
         ]);
     }
 
