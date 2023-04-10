@@ -37,7 +37,7 @@
                         <input type="checkbox" name="remember">
                         <span class="sign-up__form-checkmark checkmark"></span>
                     </label>
-                    <div class="sign-up__form-forget-password"><a href="reset-password.html">Forgot your password?</a></div>
+                    <div class="sign-up__form-forget-password"><a href="{{ route("password.request") }}">Forgot your password?</a></div>
                     <button class="sign-up__form-submit" type="submit"><a>SIGN IN</a></button>
                 </form>
                 <div class="sign-up__different">or</div>

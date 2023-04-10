@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
@@ -57,3 +58,8 @@ Route::group(["prefix" => "/products", "controller" => ProductController::class]
    Route::get("/", "products")->name("products.index");
    Route::get("/{product}", "product")->name("products.show");
 });
+
+Route::get('/forget-password', [ForgetPasswordController::class, 'forgotPasswordView'])->middleware('guest')->name('password.request');
+Route::post('/forgot-password', [ForgetPasswordController::class, 'sendResetLink'])->middleware('guest')->name('password.email');
+Route::get('/reset-password/{token}', [ForgetPasswordController::class, 'resetPasswordView'])->middleware('guest')->name('password.reset');
+Route::post('/reset-password', [ForgetPasswordController::class, 'resetPassword'])->middleware('guest')->name('password.update');
