@@ -42,15 +42,14 @@
                         </div>
                         <div class="main__offers-cards">
                             @foreach($products as $product)
-                                <a href="">
                                 <div class="main__offers-card">
                                     <p class="card-title">{{ $product->hash_name }}</p>
-                                    <div class="card-img" style="background-image: url({{ asset($product->image) }})"></div>
+                                    <a href="{{ route("products.show", ['product' => $product->id ]) }}"><div class="card-img" style="background-image: url({{ asset($product->image) }})"></div></a>
                                     <div class="card-wrapper">
                                         <div class="card-statrak">StatTrak™</div>
                                         <div class="card-rarity">{{ $product->rarity }}</div>
                                     </div>
-                                    <p class="card-price">{{$product->currency . " " . $product->price }}</p>
+                                    <p class="card-price">{{$product->price . " €"  }}</p>
                                     <form action="{{ route('cart.add', ['product' => $product->id]) }}" method="POST" >
                                         @csrf
                                     <button class="card-cart-btn" type="submit"></button>
@@ -67,7 +66,6 @@
                                         <div class="card-float-scale5"></div>
                                     </div>
                                 </div>
-                                </a>
                             @endforeach
                         </div>
                     </div>

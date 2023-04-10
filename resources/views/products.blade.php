@@ -8,7 +8,7 @@
             <div class="card-statrak">StatTrak™</div>
             <div class="card-rarity">{{ $product->rarity }}</div>
         </div>
-        <p class="card-price">{{$product->currency . " " . $product->price }}</p>
+        <p class="card-price">{{$product->price . " €"  }}</p>
         <div class="card-cart-btn"></div>
         <div class="card-float">
             <p class="card-float-title">Minimal wear</p>

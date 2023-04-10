@@ -9,18 +9,18 @@
                 <span class="main__link-span">></span>
                 <a href="/product.html" class="main__link">Vision</a>
             </div>
-            <div class="product__main-left-img"></div>
+            <div class="product__main-left-img" style="background-image: url({{ asset($product->image) }})"></div>
         </div>
         <div class="product__main-right">
             <div class="product__main-right-container">
-                <h4 class="product__main-right-title">P250</h4>
+                <h4 class="product__main-right-title">{{ $product->hash_name }}</h4>
                 <button class="product__main-right-statrak card-statrak">StatTrak™</button>
             </div>
-            <h3 class="product__main-right-model">Visions</h3>
-            <div class="product__main-right-price">€9,90</div>
+            <h3 class="product__main-right-model">{{ $product->weapons }}</h3>
+            <div class="product__main-right-price">{{ $product->price . " €"  }}</div>
             <div class="product__main-right-float card-float">
                 <p class="card-float-title">Minimal wear</p>
-                <span class="card-float-rate">0.13</span>
+                <span class="card-float-rate">{{ $product->float }}</span>
             </div>
             <div class="card-float-scale product__main-right-float-scale">
                 <div class="card-float-scale1"></div>
@@ -34,7 +34,7 @@
                 <p class="product__main-right-btn-text">Add to Cart</p>
             </div>
             <p class="product__main-right-rarity">Rarity</p>
-            <div class="product__main-right-rarity-btn card-rarity">Classified</div>
+            <div class="product__main-right-rarity-btn card-rarity"> {{ $product->rarity }}</div>
             <p class="product__main-right-rating">Rating</p>
             <div class="product__main-right-rating-container">
                 <div class="star-rating">
