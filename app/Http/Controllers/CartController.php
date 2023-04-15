@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 
 class CartController extends Controller
 {
     private CartService $cartService;
+
+
+    public function carts()
+    {
+        $categories = Category::all();
+        return view("cart", [
+            "categories"=> $categories
+        ]);
+    }
 
     public function __construct(CartService $cartService)
     {

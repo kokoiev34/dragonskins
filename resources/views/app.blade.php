@@ -17,7 +17,11 @@
             <a href="/"><div class="nav__logo"></div></a>
             <div class="nav__links">
                 @foreach($categories as $category)
-                    <a href="{{route("knives")}}" class="nav__link nav__link-rifles">{{ $category->name }}</a>
+                    <a href="{{route("productsByCategory", $category->id)}}" class="nav__link nav__link-rifles"
+                       @if( intval($categoryId) === $category->id)
+                            style="color: #7280C7;"
+                        @endif
+                    >{{ $category->name }}</a>
                 @endforeach
                 <a href="{{ route('changeLang', ['lang' => 'en']) }}" class="nav__link nav__link-rifles">English</a>
                 <a href="{{ route('changeLang', ['lang' => 'ru']) }}" class="nav__link nav__link-rifles">Русский</a>
@@ -28,7 +32,7 @@
                     <div class="nav__profile-profile" id="profile">
                         <div class="nav__profile-profile-img"></div>
                     </div>
-                    <div class="nav__profile-cart">
+                    <div class="nav__profile-cart" id="cart">
                         <div class="nav__profile-cart-img"></div>
                         <span class="nav__profile-cart-count">0</span>
                     </div>
@@ -68,6 +72,7 @@
                             </div>
                             <p class="cart-total">Total €19,80</p>
                             <button class="cart-btn-clear-cart">CLEAR CART</button>
+                            <a href="{{ route("carts") }}" class="cart-btn-clear-cart">VIEW CART</a>
                         </div>
                     </div>
                 </div>
@@ -116,11 +121,28 @@
                 <p class="footer__other-copyright">© 2023 Dragon Skins</p>
             </div>
         </div>
+        <div class="modal-window" id="myModal">
+            <div class="modal-window-content">
+                <img class="modal__content-close" src="{{ asset("/css/close.png") }}" id="close"></img>
+                <h1 class="modal__content-title">NEWSLETTER SIGN UP</h1>
+                <p class="modal__content-subtitle">If you want to receive newsletter, enter your email below</p>
+                <form action="" class="modal__content-form">
+                    <input type="email" class="sign-up__form-input modal__content-input" placeholder="Email">
+                    <label class="sign-up__form-checkbox container">Yes, I would like to subscribe to Dragon Skins Newsletter. I agree to let Sragon Skins to process my personal data in order to send me marketing material, and I have read and agree to <a href="/" class="sign-up__form-policies-link">Terms & Conditions</a> and <a href="" class="sign-up__form-policies-link">Privacy Policy</a>.</p>
+                        <input type="checkbox">
+                        <span class="sign-up__form-checkmark checkmark"></span>
+                    </label>
+                    <div class="modal__content-button-wrapper"><button class="modal__content-button">Yes, sign me up!</button></div>
+                </form>
+            </div>
+        </div>
+        <div class="overlay" id="overlay"></div>
     </div>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="{{asset("/js/profile-modal.ca00708a.js") }}"></script>
-    <script src="{{asset("/js/cart-modal") }}"></script>
+    <script src="{{asset("/js/cart-modal.js") }}"></script>
+    <script src="{{asset("/js/modal.js") }}"></script>
     <!-- Initialize Swiper -->
     <script>let swiper = new Swiper(".mySwiper", {
             navigation: {

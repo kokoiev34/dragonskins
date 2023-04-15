@@ -14,7 +14,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class MainController extends Controller
 {
-    public function homepage()
+    public function homepage($categoryId = 0)
     {
 
         $banners = Banner::where("is_active",1)->get();
@@ -25,7 +25,8 @@ class MainController extends Controller
             "categories"=> $categories,
             "banners" => $banners,
             "blogs"=> $blogs,
-            "products" => $products
+            "products" => $products,
+            "categoryId" => $categoryId
         ]);
     }
 

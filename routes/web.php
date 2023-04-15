@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ForgetPasswordController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +24,7 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', [MainController::class, "homepage"])->name("homepage");
 
+Route::get("/category/{category}",[CategoryController::class, "index"])->name("productsByCategory");
 
 Route::get("/app",[MainController::class, "app"])->name("app");
 Route::get("/export-excel", [MainController::class, "exportExcel"])->name("export.excel");
@@ -52,6 +55,8 @@ Route::group(['prefix' => '/cart', 'controller' => CartController::class], funct
     Route::get('/{product}/remove', 'remove')->name('cart.remove');
 });
 
+Route::get("/carts", [CartController::class, "carts"])->name("carts");
+
 Route::get("product", [ProductController::class, "product"])->name("product");
 
 Route::group(["prefix" => "/products", "controller" => ProductController::class], function () {
@@ -63,3 +68,5 @@ Route::get('/forget-password', [ForgetPasswordController::class, 'forgotPassword
 Route::post('/forgot-password', [ForgetPasswordController::class, 'sendResetLink'])->middleware('guest')->name('password.email');
 Route::get('/reset-password/{token}', [ForgetPasswordController::class, 'resetPasswordView'])->middleware('guest')->name('password.reset');
 Route::post('/reset-password', [ForgetPasswordController::class, 'resetPassword'])->middleware('guest')->name('password.update');
+
+Route::get('/order/create', [OrderController::class, 'createOrder'])->name('order.create');

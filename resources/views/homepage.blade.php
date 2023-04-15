@@ -75,7 +75,7 @@
                         <h1 class="promo__title">Promo code</h1>
                         <p class="promo__subtitle">By subscribing to our newsletter you receive an exclusive promocode with 25% off the first purchase</p>
                     </div>
-                    <div class="promo__btn">Subscribe</div>
+                    <button class="promo__btn" id="subscribe">Subscribe</button>
                 </div>
                 <div class="suggested">
                     <div class="suggested__wrapper">
