@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 //use GuzzleHttp\Psr7\Request;
 use App\Mail\TestMail;
 use App\Models\User;
+use App\Models\UserInformation;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -86,12 +87,22 @@ class AuthController extends Controller
     public function googleCallback()
     {
         $googleUser = Socialite::driver('google')->user();
-        $email = $googleUser->getEmail();
-        $user = User::query()->where("email", $email)->first();
-        if( !$user) {
+        $user = User::query()->where("provider", "google")->where("social_id", $googleUser->getId())->first();
+        if( !$user ) {
             $user = User::query()->create([
-                "email" => $email,
                 "name" => $googleUser->getName(),
+                "provider" => "google",
+                "social_id" => $googleUser->getId()
+            ]);
+        }
+
+        $userInformation = $user->information;
+
+        if(!$userInformation) {
+            UserInformation::query()->create([
+               "user_id" => $user->id,
+               "first_name" => $googleUser->user["given_name"],
+               "last_name" => $googleUser->user["family_name"],
             ]);
         }
 
@@ -100,4 +111,26 @@ class AuthController extends Controller
         return redirect()->route("homepage");
     }
 
+    public function githubRedirect()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function GithubCallback()
+    {
+        $githubUser = Socialite::driver('github')->user();
+
+        $email = $githubUser->getEmail();
+        $user = User::query()->where('email', $email)->first();
+        if (!$user) {
+            $user = User::query()->create([
+                'email' => $email,
+                'name' => $githubUser->getName()
+            ]);
+        }
+
+        Auth::login($user);
+
+        return redirect()->route('homepage');
+    }
 }
