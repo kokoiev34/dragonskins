@@ -12,16 +12,18 @@ class CategoryController extends Controller
 {
     public function index($categoryId = 0) {
         $categories = Category::get();
-        $products = Product::latest();
+
         $banners = Banner::where("is_active",1)->get();
         $blogs = Blog::all();
 
         if ($categoryId) {
-            $products -> where("category_id", $categoryId);
+            $products = Product::where("category_id", $categoryId);
+        } else {
+            $products = Product::latest();
         }
 
         return view ("homepage", [
-            "products" => $products->get(),
+            "products" => $products->paginate(7),
             "categories" => $categories,
             "banners" => $banners,
             "blogs"=> $blogs,

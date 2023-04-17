@@ -70,3 +70,7 @@ Route::get('/reset-password/{token}', [ForgetPasswordController::class, 'resetPa
 Route::post('/reset-password', [ForgetPasswordController::class, 'resetPassword'])->middleware('guest')->name('password.update');
 
 Route::get('/order/create', [OrderController::class, 'createOrder'])->name('order.create');
+
+Route::get('/google/auth/redirect', [AuthController::class, "googleRedirect"])->name("google.redirect");
+Route::get('/google/auth/callback', [AuthController::class, "googleCallback"])->name("google.callback");
+

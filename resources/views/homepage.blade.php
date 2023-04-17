@@ -69,7 +69,9 @@
                             @endforeach
                         </div>
                     </div>
+
                 </div>
+{{--                {!! $products->appends(Request::all())->links() !!}--}}
                 <div class="promo">
                     <div class="promo__wrapper">
                         <h1 class="promo__title">Promo code</h1>

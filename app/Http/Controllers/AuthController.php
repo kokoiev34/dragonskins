@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Laravel\Socialite\Facades\Socialite;
 
 
 class AuthController extends Controller
@@ -73,6 +74,28 @@ class AuthController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+
+        return redirect()->route("homepage");
+    }
+
+    public function googleRedirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function googleCallback()
+    {
+        $googleUser = Socialite::driver('google')->user();
+        $email = $googleUser->getEmail();
+        $user = User::query()->where("email", $email)->first();
+        if( !$user) {
+            $user = User::query()->create([
+                "email" => $email,
+                "name" => $googleUser->getName(),
+            ]);
+        }
+
+        Auth::login($user);
 
         return redirect()->route("homepage");
     }

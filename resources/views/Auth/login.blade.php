@@ -43,7 +43,7 @@
                 <div class="sign-up__different">or</div>
                 <h3 class="sign-up__different-title">SIGN UP WITH</h3>
                 <div class="sign-up__different-methods">
-                    <a href="index.html" class="sign-up__different-method method-gmail"></a>
+                    <a href="{{ route ("google.redirect") }}" class="sign-up__different-method method-gmail"></a>
                     <a href="index.html" class="sign-up__different-method method-steam"></a>
                 </div>
             </div>
