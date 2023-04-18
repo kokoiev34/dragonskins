@@ -12,24 +12,19 @@ class AccountController
 {
 
 
-    public function account($categoryId = 0)
+    public function account()
     {
         $geos = Country::getAllGeos();
-        $categories = Category::all();
         return view("auth.settings", [
             "user" => Auth::user(),
-            "categories" => $categories,
             "geos" => $geos,
-            "categoryId" => $categoryId,
         ]);
     }
 
-    public function updateAccount(Request $request, AccountService $accountService, $categoryId = 0)
+    public function updateAccount(Request $request, AccountService $accountService)
     {
 
     $accountService->updateAccount($request->all());
-    return redirect()->route("account.show", [
-        "categoryId" => $categoryId,
-    ]);
+    return redirect()->route("account.show");
     }
 }

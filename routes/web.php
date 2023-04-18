@@ -26,20 +26,10 @@ Route::get('/', [MainController::class, "homepage"])->name("homepage");
 
 Route::get("/category/{category}",[CategoryController::class, "index"])->name("productsByCategory");
 
-Route::get("/app",[MainController::class, "app"])->name("app");
-Route::get("/export-excel", [MainController::class, "exportExcel"])->name("export.excel");
-Route::get("/upload-excel", [MainController::class, "uploadExcel"])->name("upload.excel");
-Route::get("/knives", [MainController::class, "knives"])->name("knives");
-
-Route::group(['prefix' => '/account', 'controller' => AccountController::class, 'middleware' => 'auth'], function () {
-    Route::get('/', 'account')->name('account.show');
-    Route::post('/', 'updateAccount')->name('account.update');
+Route::group(["prefix" => "/products", "controller" => ProductController::class], function () {
+    Route::get("/", "products")->name("products.index");
+    Route::get("/{product}", "product")->name("products.show");
 });
-
-Route::get("email/verify", [VerificationController::class, "view"])->middleware("auth")->name("verification.notify");
-Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'handle'])->middleware(['auth', 'signed'])->name('verification.verify');
-Route::post('/email/verification-notification', [VerificationController::class, 'send'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-Route::get('/changeLang', [MainController::class, 'changeLang'])->name('changeLang');
 
 Route::group(["controller" => AuthController::class], function () {
     Route::get("/login", "getLoginPage")->name("auth.loginPage");
@@ -47,6 +37,15 @@ Route::group(["controller" => AuthController::class], function () {
     Route::get("/register", "getRegisterPage")->name("auth.registerPage");
     Route::post("/register", "register")->name("auth.register");
     Route::get("/logout", "logout")->name("auth.logout");
+});
+
+Route::get("email/verify", [VerificationController::class, "view"])->middleware("auth")->name("verification.notify");
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'handle'])->middleware(['auth', 'signed'])->name('verification.verify');
+Route::post('/email/verification-notification', [VerificationController::class, 'send'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::group(['prefix' => '/account', 'controller' => AccountController::class, 'middleware' => 'auth'], function () {
+    Route::get('/', 'account')->name('account.show');
+    Route::post('/', 'updateAccount')->name('account.update');
 });
 
 Route::group(['prefix' => '/cart', 'controller' => CartController::class], function () {
@@ -57,12 +56,22 @@ Route::group(['prefix' => '/cart', 'controller' => CartController::class], funct
 
 Route::get("/carts", [CartController::class, "carts"])->name("carts");
 
-Route::get("product", [ProductController::class, "product"])->name("product");
+Route::get('/changeLang', [MainController::class, 'changeLang'])->name('changeLang');
 
-Route::group(["prefix" => "/products", "controller" => ProductController::class], function () {
-   Route::get("/", "products")->name("products.index");
-   Route::get("/{product}", "product")->name("products.show");
-});
+Route::get("/export-excel", [MainController::class, "exportExcel"])->name("export.excel");
+Route::get("/upload-excel", [MainController::class, "uploadExcel"])->name("upload.excel");
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/forget-password', [ForgetPasswordController::class, 'forgotPasswordView'])->middleware('guest')->name('password.request');
 Route::post('/forgot-password', [ForgetPasswordController::class, 'sendResetLink'])->middleware('guest')->name('password.email');
@@ -71,9 +80,9 @@ Route::post('/reset-password', [ForgetPasswordController::class, 'resetPassword'
 
 Route::get('/order/create', [OrderController::class, 'createOrder'])->name('order.create');
 
+
 Route::get('/google/auth/redirect', [AuthController::class, "googleRedirect"])->name("google.redirect");
 Route::get('/google/auth/callback', [AuthController::class, "googleCallback"])->name("google.callback");
-
 Route::get('/github/auth/redirect', [AuthController::class, 'githubRedirect'])->name('github.redirect');
 Route::get('/github/auth/callback', [AuthController::class, 'githubCallback'])->name('github.callback');
 

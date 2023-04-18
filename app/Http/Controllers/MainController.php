@@ -1,9 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Banner;
-use App\Models\Blog;
-use App\Models\Category;
 use App\Models\Device;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -14,31 +11,12 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class MainController extends Controller
 {
-    public function homepage($categoryId = 0)
+    public function homepage()
     {
-
-        $banners = Banner::where("is_active",1)->get();
-        $blogs = Blog::all();
         $products = Product::where("is_active", 1)->get();
-        $categories = Category::all();
         return view("homepage", [
-            "categories"=> $categories,
-            "banners" => $banners,
-            "blogs"=> $blogs,
             "products" => $products,
-            "categoryId" => $categoryId
         ]);
-    }
-
-    public function app()
-    {
-        $product = Product::all();
-        $categories = Category::all();
-        return view("homepage", [
-            "product"=> $product,
-            "categories"=> $categories
-        ]);
-
     }
 
     public function exportExcel()
@@ -54,7 +32,6 @@ class MainController extends Controller
 
     public function uploadExcel()
     {
-
         $reader = IOFactory::createReader("Xlsx");
         $reader->setReadDataOnly(true);
         $spreadsheet = $reader->load("products.xlsx");
@@ -77,15 +54,6 @@ class MainController extends Controller
         }
     }
 
-    public function knives()
-    {
-        $categories = Category::all();
-        return view("knives", [
-            "categories"=> $categories
-        ]);
-    }
-
-
     public function changeLang(Request $request)
     {
         App::setLocale($request->lang);
@@ -94,13 +62,5 @@ class MainController extends Controller
         return redirect()->back();
     }
 
-
-//    private function procesingProductFromExcel(array $productData)
-//    {
-//        $product = Device::query()->find($productData[0]);
-//
-//        return
-//
-//    }
 }
 

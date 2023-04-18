@@ -97,7 +97,6 @@ class AuthController extends Controller
         }
 
         $userInformation = $user->information;
-
         if(!$userInformation) {
             UserInformation::query()->create([
                "user_id" => $user->id,
