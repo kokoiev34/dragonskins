@@ -43,4 +43,9 @@ return [
         'redirect' => env("GITHUB_CALLBACK_URL"),
     ],
 
+    "stripe" => [
+        "public_key" => env("STRIPE_PK"),
+        "secret_key" => env("STRIPE_SK"),
+    ]
+
 ];

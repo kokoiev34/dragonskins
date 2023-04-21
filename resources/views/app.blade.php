@@ -13,6 +13,7 @@
     </head>
     <body class="antialiased">
     <div class="wrapper">
+
         <div class="nav">
             <a href="/"><div class="nav__logo"></div></a>
             <div class="nav__links">
@@ -59,6 +60,7 @@
                     <div class="cart-modal" id="cart-modal">
                         <div class="cart__modal">
                             <h5 class="cart__modal-title">1 items in Cart</h5>
+{{--                            @foreach($products as $product)--}}
                             <div class="cart__modal-item">
                                 <div class="cart-modal-item-left">
                                     <p class="cart__item-title">P250</p>
@@ -70,6 +72,7 @@
                                     <button class="cart__item-delete">Delete</button>
                                 </div>
                             </div>
+{{--                            @endforeach--}}
                             <p class="cart-total">Total €19,80</p>
                             <button class="cart-btn-clear-cart">CLEAR CART</button>
                             <a href="{{ route("carts") }}" class="cart-btn-clear-cart">VIEW CART</a>

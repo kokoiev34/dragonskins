@@ -14,7 +14,7 @@ class VerificationController
 
     public function handle(EmailVerificationRequest $request){
         $request->fulfill();
-        return redirect('/authaccount');
+        return redirect('/');
     }
 
     public function send(Request $request)

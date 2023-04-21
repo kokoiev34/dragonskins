@@ -10,17 +10,13 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
     public function index($categoryId = 0) {
 
-        if ($categoryId) {
-            $products = Product::where("category_id", $categoryId);
-        } else {
-            $products = Product::latest();
-        }
-
+        $products = Product::where("category_id", $categoryId);
         return view ("homepage", [
             "products" => $products->paginate(7),
-            "categoryId" => $categoryId
+            "categoryId" => $categoryId,
         ]);
     }
 }

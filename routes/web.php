@@ -61,7 +61,8 @@ Route::get('/changeLang', [MainController::class, 'changeLang'])->name('changeLa
 Route::get("/export-excel", [MainController::class, "exportExcel"])->name("export.excel");
 Route::get("/upload-excel", [MainController::class, "uploadExcel"])->name("upload.excel");
 
-
+Route::get("/order/{order}/payment/create", [OrderController::class, "createPayment"])->name("payment.create");
+Route::get("/order/payment/callback/{hash}", [OrderController::class, "callback"])->name("payment.callback");
 
 
 
