@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use http\Client\Request;
+
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 class VerificationController
 {

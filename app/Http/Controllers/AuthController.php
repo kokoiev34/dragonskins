@@ -57,7 +57,7 @@ class AuthController extends Controller
         $user = User::create([
            "name" => $name,
            "password" => Hash::make($password),
-            "email" => $email
+           "email" => $email
         ]);
 
         Mail::to($user->email)->send(new TestMail($user));

@@ -65,15 +65,6 @@ Route::get("/order/{order}/payment/create", [OrderController::class, "createPaym
 Route::get("/order/payment/callback/{hash}", [OrderController::class, "callback"])->name("payment.callback");
 
 
-
-
-
-
-
-
-
-
-
 Route::get('/forget-password', [ForgetPasswordController::class, 'forgotPasswordView'])->middleware('guest')->name('password.request');
 Route::post('/forgot-password', [ForgetPasswordController::class, 'sendResetLink'])->middleware('guest')->name('password.email');
 Route::get('/reset-password/{token}', [ForgetPasswordController::class, 'resetPasswordView'])->middleware('guest')->name('password.reset');

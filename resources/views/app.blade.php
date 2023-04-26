@@ -13,7 +13,6 @@
     </head>
     <body class="antialiased">
     <div class="wrapper">
-
         <div class="nav">
             <a href="/"><div class="nav__logo"></div></a>
             <div class="nav__links">
