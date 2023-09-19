@@ -59,18 +59,18 @@
                     <div class="cart-modal" id="cart-modal">
                         <div class="cart__modal">
                             <h5 class="cart__modal-title">1 items in Cart</h5>
-{{--                            @foreach($products as $product)--}}
-                            <div class="cart__modal-item">
-                                <div class="cart-modal-item-left">
-                                    <p class="cart__item-title">P250</p>
-                                    <p class="cart__item-model">Visions</p>
-                                    <p class="cart__item-info">Minimal Wear Classified Pistol</p>
-                                </div>
-                                <div class="cart-modal-item-right">
-                                    <p class="cart__item-price">€9,90</p>
-                                    <button class="cart__item-delete">Delete</button>
-                                </div>
-                            </div>
+{{--                            @foreach($carts as $cart)--}}
+{{--                            <div class="cart__modal-item">--}}
+{{--                                <div class="cart-modal-item-left">--}}
+{{--                                    <p class="cart__item-title">{{ $cart->weapons}}</p>--}}
+{{--                                    <p class="cart__item-model">{{ $cart->hash_name }}</p>--}}
+{{--                                    <p class="cart__item-info">{{ $cart->rarity }}</p>--}}
+{{--                                </div>--}}
+{{--                                <div class="cart-modal-item-right">--}}
+{{--                                    <p class="cart__item-price">€ {{ $cart->price }}</p>--}}
+{{--                                    <button class="cart__item-delete">Delete</button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 {{--                            @endforeach--}}
                             <p class="cart-total">Total €19,80</p>
                             <button class="cart-btn-clear-cart">CLEAR CART</button>

@@ -12,9 +12,10 @@ class CartController extends Controller
 
     public function carts()
     {
-        $categories = Category::all();
+        $cart = session()->get('cart');
         return view("cart", [
-            "categories"=> $categories
+            'products' => $cart ? Product::query()->whereIn('id', array_keys($cart))->get() : null,
+            'cart' => $cart,
         ]);
     }
 

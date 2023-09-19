@@ -41,8 +41,9 @@ body {
     <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
         <i class="checkmark">✓</i>
     </div>
-    <h1>Hello!</h1>
-    <p>Your login was from <b style="font-size: 24px">{{ $user->name }}!</b></p>
+    <h1>Hello {{ $user->name }}!</h1>
+    <p> We noticed your Dragonskins account was accessed from this IP address. {{ $_SERVER["REMOTE_ADDR"] }}</p>
+    <p> Browser <b style="font-size: 24px">{{ $agent->browser() }}!</b></p>
 </div>
 </body>
 </html>

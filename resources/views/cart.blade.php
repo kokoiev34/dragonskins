@@ -4,67 +4,85 @@
         <div class="cart__wrapper">
             <h2 class="cart__wrapper-title">Cart</h2>
             <span class="cart__wrapper-quantity">2 items</span>
-            <div class="cart__wrapper-card">
-                <div class="cart__wrapper-card-image" style="background-image: url({{ asset("/css/cart_device.png") }})"></div>
-                <div class="cart__wrapper-card-information">
-                    <span class="cart__wrapper-card-information-weapon">P250</span>
-                    <span class="cart__wrapper-card-information-model">Visions</span>
-                    <span class="cart__wrapper-card-information-float">Minimal Wear Classified Pistol</span>
-                </div>
-                <div class="cart__wrapper-card-other">
-                    <span class="cart__wrapper-card-other-price">€9,90</span>
-                    <button class="cart__wrapper-card-other-delete">
-                        <img src="{{ asset ("/css/cart-delete.png") }}" alt="delete">
-                        <span class="cart__wrapper-card-other-delete-title">Remove</span>
-                    </button>
-                </div>
+            @foreach($products as $product)
+                <div class="cart__wrapper-card">
+                    <div class="cart__wrapper-card-image" style="background-image: url({{ asset($product->image) }})"></div>
+                    <div class="cart__wrapper-card-information">
+                        <span class="cart__wrapper-card-information-weapon">{{ $product->weapons}}</span>
+                        <span class="cart__wrapper-card-information-model">{{ $product->hash_name }}</span>
+                        <span class="cart__wrapper-card-information-float">{{ $product->rarity }}</span>
+                    </div>
+                    <div class="cart__wrapper-card-other">
+                        <span class="cart__wrapper-card-other-price">{{ $cart[$product->id]["quantity"] * $product->price }} €</span>
+                        <button class="cart__wrapper-card-other-delete">
+                            <img src="{{ asset ("/css/cart-delete.png") }}" alt="delete">
+                            <span class="cart__wrapper-card-other-delete-title">Remove</span>
+                        </button>
+                    </div>
 
-            </div>
-            <div class="cart__wrapper-card">
-                <div class="cart__wrapper-card-image" style="background-image: url({{ asset("/css/cart_device.png") }})"></div>
-                <div class="cart__wrapper-card-information">
-                    <span class="cart__wrapper-card-information-weapon">P250</span>
-                    <span class="cart__wrapper-card-information-model">Visions</span>
-                    <span class="cart__wrapper-card-information-float">Minimal Wear Classified Pistol</span>
                 </div>
-                <div class="cart__wrapper-card-other">
-                    <span class="cart__wrapper-card-other-price">€9,90</span>
-                    <button class="cart__wrapper-card-other-delete">
-                        <img src="{{ asset ("/css/cart-delete.png") }}" alt="delete">
-                        <span class="cart__wrapper-card-other-delete-title">Remove</span>
-                    </button>
-                </div>
-            </div>
-            <div class="cart__wrapper-card">
-                <div class="cart__wrapper-card-image" style="background-image: url({{ asset("/css/cart_device.png") }})"></div>
-                <div class="cart__wrapper-card-information">
-                    <span class="cart__wrapper-card-information-weapon">P250</span>
-                    <span class="cart__wrapper-card-information-model">Visions</span>
-                    <span class="cart__wrapper-card-information-float">Minimal Wear Classified Pistol</span>
-                </div>
-                <div class="cart__wrapper-card-other">
-                    <span class="cart__wrapper-card-other-price">€9,90</span>
-                    <button class="cart__wrapper-card-other-delete">
-                        <img src="{{ asset ("/css/cart-delete.png") }}" alt="delete">
-                        <span class="cart__wrapper-card-other-delete-title">Remove</span>
-                    </button>
-                </div>
-            </div>
-            <div class="cart__wrapper-card">
-                <div class="cart__wrapper-card-image" style="background-image: url({{ asset("/css/cart_device.png") }})"></div>
-                <div class="cart__wrapper-card-information">
-                    <span class="cart__wrapper-card-information-weapon">P250</span>
-                    <span class="cart__wrapper-card-information-model">Visions</span>
-                    <span class="cart__wrapper-card-information-float">Minimal Wear Classified Pistol</span>
-                </div>
-                <div class="cart__wrapper-card-other">
-                    <span class="cart__wrapper-card-other-price">€9,90</span>
-                    <button class="cart__wrapper-card-other-delete">
-                        <img src="{{ asset ("/css/cart-delete.png") }}" alt="delete">
-                        <span class="cart__wrapper-card-other-delete-title">Remove</span>
-                    </button>
-                </div>
-            </div>
+            @endforeach
+{{--            <div class="cart__wrapper-card">--}}
+{{--                <div class="cart__wrapper-card-image" style="background-image: url({{ asset("/css/cart_device.png") }})"></div>--}}
+{{--                <div class="cart__wrapper-card-information">--}}
+{{--                    <span class="cart__wrapper-card-information-weapon">P250</span>--}}
+{{--                    <span class="cart__wrapper-card-information-model">Visions</span>--}}
+{{--                    <span class="cart__wrapper-card-information-float">Minimal Wear Classified Pistol</span>--}}
+{{--                </div>--}}
+{{--                <div class="cart__wrapper-card-other">--}}
+{{--                    <span class="cart__wrapper-card-other-price">€9,90</span>--}}
+{{--                    <button class="cart__wrapper-card-other-delete">--}}
+{{--                        <img src="{{ asset ("/css/cart-delete.png") }}" alt="delete">--}}
+{{--                        <span class="cart__wrapper-card-other-delete-title">Remove</span>--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+
+{{--            </div>--}}
+{{--            <div class="cart__wrapper-card">--}}
+{{--                <div class="cart__wrapper-card-image" style="background-image: url({{ asset("/css/cart_device.png") }})"></div>--}}
+{{--                <div class="cart__wrapper-card-information">--}}
+{{--                    <span class="cart__wrapper-card-information-weapon">P250</span>--}}
+{{--                    <span class="cart__wrapper-card-information-model">Visions</span>--}}
+{{--                    <span class="cart__wrapper-card-information-float">Minimal Wear Classified Pistol</span>--}}
+{{--                </div>--}}
+{{--                <div class="cart__wrapper-card-other">--}}
+{{--                    <span class="cart__wrapper-card-other-price">€9,90</span>--}}
+{{--                    <button class="cart__wrapper-card-other-delete">--}}
+{{--                        <img src="{{ asset ("/css/cart-delete.png") }}" alt="delete">--}}
+{{--                        <span class="cart__wrapper-card-other-delete-title">Remove</span>--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="cart__wrapper-card">--}}
+{{--                <div class="cart__wrapper-card-image" style="background-image: url({{ asset("/css/cart_device.png") }})"></div>--}}
+{{--                <div class="cart__wrapper-card-information">--}}
+{{--                    <span class="cart__wrapper-card-information-weapon">P250</span>--}}
+{{--                    <span class="cart__wrapper-card-information-model">Visions</span>--}}
+{{--                    <span class="cart__wrapper-card-information-float">Minimal Wear Classified Pistol</span>--}}
+{{--                </div>--}}
+{{--                <div class="cart__wrapper-card-other">--}}
+{{--                    <span class="cart__wrapper-card-other-price">€9,90</span>--}}
+{{--                    <button class="cart__wrapper-card-other-delete">--}}
+{{--                        <img src="{{ asset ("/css/cart-delete.png") }}" alt="delete">--}}
+{{--                        <span class="cart__wrapper-card-other-delete-title">Remove</span>--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="cart__wrapper-card">--}}
+{{--                <div class="cart__wrapper-card-image" style="background-image: url({{ asset("/css/cart_device.png") }})"></div>--}}
+{{--                <div class="cart__wrapper-card-information">--}}
+{{--                    <span class="cart__wrapper-card-information-weapon">P250</span>--}}
+{{--                    <span class="cart__wrapper-card-information-model">Visions</span>--}}
+{{--                    <span class="cart__wrapper-card-information-float">Minimal Wear Classified Pistol</span>--}}
+{{--                </div>--}}
+{{--                <div class="cart__wrapper-card-other">--}}
+{{--                    <span class="cart__wrapper-card-other-price">€9,90</span>--}}
+{{--                    <button class="cart__wrapper-card-other-delete">--}}
+{{--                        <img src="{{ asset ("/css/cart-delete.png") }}" alt="delete">--}}
+{{--                        <span class="cart__wrapper-card-other-delete-title">Remove</span>--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="cart__wrapper-clear">
                 <button class="cart__wrapper-clear-button">Clear Cart</button>
             </div>

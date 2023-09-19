@@ -13,6 +13,7 @@ class AppComposer
 
     public function compose(View $view, $categoryId = 0)
     {
+        $cart = session()->get('cart');
         $categories = Category::all();
         $banners = Banner::where("is_active",1)->get();
         $blogs = Blog::all();
@@ -22,6 +23,8 @@ class AppComposer
             "banners" => $banners,
             "blogs"=> $blogs,
             "categoryId" => $categoryId,
+            'carts' => $cart ? Product::query()->whereIn('id', array_keys($cart))->get() : null,
+            'cart' => $cart,
         ]);
     }
 }
