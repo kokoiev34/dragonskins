@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Mail\NewLogin;
 use App\Mail\TestMail;
+use App\Models\User;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -24,6 +25,6 @@ class SendMessageUserLogin
      */
     public function handle(Login $event): void
     {
-        Mail::to($event->user->email)->send(new NewLogin($event->user));
+//        Mail::to($event->user->email)->send(new NewLogin($event->user));
     }
 }

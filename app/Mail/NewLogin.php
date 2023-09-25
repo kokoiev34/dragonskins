@@ -40,7 +40,7 @@ class NewLogin extends Mailable
     {
         $agent = new Agent();
         return new Content(
-            view: 'Email.new_login',
+            view: 'email.new_login',
             with: [
                 "user"=> $this->user,
                 "agent" => $agent,

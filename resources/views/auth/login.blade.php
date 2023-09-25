@@ -30,7 +30,7 @@
                 <form class="sign-up__form" action="{{ route("auth.login") }}" method="POST">
                     @csrf
                     <input type="email" name="email" class="sign-up__form-input sign-up__form-username" placeholder="Email or username">
-                    <!-- <input type="email" class="sign-up__form-input sign-up__form-email" placeholder="Email"> -->
+                    <!-- <input type="email" class="sign-up__form-input sign-up__form-email" placeholder="email"> -->
                     <input type="password" name="password" class="sign-up__form-input sign-up__form-password" placeholder="Password">
                     <!-- <input type="password" class="sign-up__form-input sign-up__form-re-password" placeholder="Repeat password"> -->
                     <label class="sign-up__form-checkbox container">Remember me

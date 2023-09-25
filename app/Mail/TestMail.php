@@ -40,7 +40,7 @@ class TestMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'Email.success_email',
+            view: 'email.success_email',
             with: [
                 "user"=> $this->user
             ]

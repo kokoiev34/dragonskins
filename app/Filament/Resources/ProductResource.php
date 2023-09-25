@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Filament\Resources;
+
+use App\Filament\Resources\ProductResource\Pages;
+use App\Models\Category;
+use App\Models\Product;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Filament\Tables\Columns;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+
+class ProductResource extends Resource
+{
+    protected static ?string $model = Product::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Forms\Components\TextInput::make('weapons')->label('Weapons'),
+                Forms\Components\Select::make('category_id')->options(Category::all()->pluck('name', 'id')),
+                Forms\Components\TextInput::make('hash_name')->label('Hash name'),
+                Forms\Components\TextInput::make('rarity')->label('Rarity'),
+                Forms\Components\TextInput::make('float_rate')->label('Float rate')->numeric(),
+                Forms\Components\TextInput::make('price')->label('Price')->numeric(),
+                Forms\Components\Select::make('currency')->label('Currency')->options([
+                    'USD' => 'USD',
+                    'EUR' => 'EUR',
+                ]),
+                Forms\Components\TextInput::make('statrak')->label('Statrak'),
+                Forms\Components\Checkbox::make('is_active')->label('Is active'),
+                Forms\Components\FileUpload::make('image')->label('Image')->disk('public')->image(),
+                Forms\Components\TextInput::make('image_link')->label('Image link'),
+            ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                Columns\TextColumn::make('weapons')->label('Weapons'),
+                Columns\TextColumn::make('hash_name')->label('Hash name'),
+                Columns\TextColumn::make('price')->label('Price'),
+                Columns\TextColumn::make('currency')->label('Currency'),
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListProducts::route('/'),
+            'create' => Pages\CreateProduct::route('/create'),
+            'edit' => Pages\EditProduct::route('/{record}/edit'),
+        ];
+    }
+}

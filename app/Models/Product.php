@@ -11,11 +11,15 @@ class Product extends Model
 
     protected $fillable = [
         'weapons',
+        'category_id',
         'hash_name',
         'rarity',
         'float_rate',
         'price',
         'currency',
-        'statrak'
+        'statrak',
+        'image',
+        'is_active',
+        'image_link',
     ];
 }
