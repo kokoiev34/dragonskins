@@ -36,8 +36,8 @@ class ProductResource extends Resource
                 ]),
                 Forms\Components\TextInput::make('statrak')->label('Statrak'),
                 Forms\Components\Checkbox::make('is_active')->label('Is active'),
-                Forms\Components\FileUpload::make('image')->label('Image')->disk('public')->image(),
                 Forms\Components\TextInput::make('image_link')->label('Image link'),
+                Forms\Components\FileUpload::make('image')->label('Image')->disk('public')->image(),
             ]);
     }
 

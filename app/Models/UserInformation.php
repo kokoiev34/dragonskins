@@ -25,4 +25,9 @@ class UserInformation extends Model
         "steam_account",
         "social_account"
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

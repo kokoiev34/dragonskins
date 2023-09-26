@@ -25,8 +25,8 @@ class BlogResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')->label('Title'),
-                Forms\Components\RichEditor::make('description')->label('Description'),
                 Forms\Components\DateTimePicker::make('date')->label('Date'),
+                Forms\Components\RichEditor::make('description')->label('Description'),
                 Forms\Components\FileUpload::make('image')->label('Image')->disk('public')->image(),
                 Forms\Components\TextInput::make('image_link')->label('Image link'),
             ]);
