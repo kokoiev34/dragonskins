@@ -39,7 +39,7 @@
                                     <div class="swiper__subtitle">{{$banner->description}}</div>
                                     <div class="swiper__button">{{$banner->button}}</div>
                                 </div>
-                                <div class="swiper-slide-right" style="background-image: url({{ asset($banner->image) }})"></div>
+                                <div class="swiper-slide-right" style="background-image: url({{ asset($banner->preview) }})"></div>
                             </div>
                             @endforeach
                         </div>
@@ -57,7 +57,7 @@
                             @foreach($blogs as $blog)
                             <div class="main__blog-card">
                                 <h3 class="main__blog-card-title">{{ $blog->title }}</h3>
-                                <div class="main__blog-card-img" style="background-image: url({{ asset($blog->image) }})"></div>
+                                <div class="main__blog-card-img" style="background-image: url({{ asset($blog->preview) }})"></div>
                                 <p class="main__blog-card-subtitle">{{ $blog->description }}</p>
                                 <date class="main__blog-card-date">{{ $blog->date }}3</date>
                             </div>

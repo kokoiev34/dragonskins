@@ -6,7 +6,7 @@
             <span class="cart__wrapper-quantity">{{ $carts?->count() }} item(s)</span>
             @foreach($products as $product)
                 <div class="cart__wrapper-card">
-                    <div class="cart__wrapper-card-image" style="background-image: url({{ asset($product->image) }})"></div>
+                    <div class="cart__wrapper-card-image" style="background-image: url({{ asset($product->preview) }})"></div>
                     <div class="cart__wrapper-card-information">
                         <span class="cart__wrapper-card-information-weapon">{{ $product->weapons}}</span>
                         <span class="cart__wrapper-card-information-model">{{ $product->hash_name }}</span>

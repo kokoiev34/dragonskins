@@ -3,7 +3,7 @@
     @foreach($products as $product)
     <div class="main__offers-card">
         <p class="card-title">{{ $product->hash_name }}</p>
-        <div class="card-img" style="background-image: url({{ asset($product->image) }})"></div>
+        <div class="card-img" style="background-image: url({{ asset($product->preview) }})"></div>
         <div class="card-wrapper">
             <div class="card-statrak">StatTrak™</div>
             <div class="card-rarity">{{ $product->rarity }}</div>

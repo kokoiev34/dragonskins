@@ -9,7 +9,7 @@
                 <span class="main__link-span">></span>
                 <a href="/product.html" class="main__link">Vision</a>
             </div>
-            <div class="product__main-left-img" style="background-image: url({{ asset($product->image) }})"></div>
+            <div class="product__main-left-img" style="background-image: url({{ asset($product->preview) }})"></div>
         </div>
         <div class="product__main-right">
             <div class="product__main-right-container">

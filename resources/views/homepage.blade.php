@@ -7,10 +7,10 @@
                                 <div class="swiper-slide">
                                     <div class="swiper-slide-left">
                                         <div class="swiper__title">{{$banner->title}}</div>
-                                        <div class="swiper__subtitle">{{$banner->description}}</div>
+                                        <div class="swiper__subtitle">{!! $banner->description !!}</div>
                                         <div class="swiper__button">{{$banner->button}}</div>
                                     </div>
-                                    <div class="swiper-slide-right" style="background-image: url({{ asset($banner->image) }})"></div>
+                                    <div class="swiper-slide-right" style="background-image: url({{ asset($banner->preview) }})"></div>
                                 </div>
                             @endforeach
                         </div>
@@ -28,7 +28,7 @@
                             @foreach($blogs as $blog)
                                 <div class="main__blog-card">
                                     <h3 class="main__blog-card-title">{{ $blog->title }}</h3>
-                                    <div class="main__blog-card-img" style="background-image: url({{ asset($blog->image) }})"></div>
+                                    <div class="main__blog-card-img" style="background-image: url({{ asset($blog->preview) }})"></div>
                                     <p class="main__blog-card-subtitle">{{ $blog->description }}</p>
                                     <date class="main__blog-card-date">{{ $blog->date }}3</date>
                                 </div>
@@ -44,7 +44,7 @@
                             @foreach($products as $product)
                                 <div class="main__offers-card">
                                     <p class="card-title">{{ $product->hash_name }}</p>
-                                    <a href="{{ route("products.show", ['product' => $product->id ]) }}"><div class="card-img" style="background-image: url({{ asset($product->image) }})"></div></a>
+                                    <a href="{{ route("products.show", ['product' => $product->id ]) }}"><div class="card-img" style="background-image: url({{ asset($product->preview) }})"></div></a>
                                     <div class="card-wrapper">
                                         <div class="card-statrak">StatTrak™</div>
                                         <div class="card-rarity">{{ $product->rarity }}</div>
