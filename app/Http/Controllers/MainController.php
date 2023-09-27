@@ -13,7 +13,7 @@ class MainController extends Controller
 {
     public function homepage()
     {
-        $products = Product::where("is_active", 1)->get();
+        $products = Product::where("is_active", 1)->paginate(28);
         return view("homepage", [
             "products" => $products,
         ]);

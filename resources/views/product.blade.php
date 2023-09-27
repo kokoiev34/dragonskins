@@ -29,10 +29,15 @@
                 <div class="card-float-scale4"></div>
                 <div class="card-float-scale5"></div>
             </div>
-            <div class="product__main-right-btn">
-                <div class="product__main-right-btn-icon"></div>
-                <p class="product__main-right-btn-text">Add to Cart</p>
-            </div>
+            <form action="{{ route('cart.add', ['product' => $product->id]) }}" method="POST" >
+                @csrf
+                <button type="submit" class="w-100">
+                    <div class="product__main-right-btn">
+                        <div class="product__main-right-btn-icon"></div>
+                        <p class="product__main-right-btn-text">Add to Cart</p>
+                    </div>
+                </button>
+            </form>
             <p class="product__main-right-rarity">Rarity</p>
             <div class="product__main-right-rarity-btn card-rarity"> {{ $product->rarity }}</div>
             <p class="product__main-right-rating">Rating</p>

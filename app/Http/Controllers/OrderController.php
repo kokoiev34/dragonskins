@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
+use App\Mail\OrderMail;
+use App\Mail\TestMail;
 use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Stripe\StripeClient;
 
 class OrderController extends Controller
 {
-    public function createOrder(Request $request)
+    public function createOrder(OrderRequest $request)
     {
+        $user = Auth::user();
         $cart = session()->get("cart");
 
         $productsItems = [];
@@ -21,9 +26,8 @@ class OrderController extends Controller
             $productsItems[$key]['quantity'] = $item['quantity'];
         }
 
-
         $order = Order::query()->create([
-            'user_id' => Auth::user()?->id,
+            'user_id' => $user->id,
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
             'first_name' => $request->input('first_name'),
@@ -32,9 +36,12 @@ class OrderController extends Controller
         ]);
 
         $order->products()->sync($productsItems);
-//        session()->flash('success', 'Successfully created');
-//        return redirect()->back();
 
+        session()->forget('cart');
+
+        Mail::to($user->email)->send(new OrderMail($user, $order));
+
+        return redirect()->route("homepage");
     }
 
     public function createPayment(Order $order)

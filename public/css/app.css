@@ -3644,3 +3644,31 @@ input[type=range]::-ms-thumb {
 }
 
 /*# sourceMappingURL=/styles.434540e1.css.map */
+
+.error {
+    color: red;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.wrapper__bg .pagination {
+    display: flex;
+    justify-content: center;
+    color: #882B7F;
+    font-size: 24px;
+}
+
+.pagination a {
+    color: #FDB600;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}

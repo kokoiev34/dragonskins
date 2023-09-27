@@ -52,6 +52,7 @@ Route::group(['prefix' => '/cart', 'controller' => CartController::class], funct
     Route::get('/', 'getCart')->name('cart.get');
     Route::post('/{product}/add', 'add')->name('cart.add');
     Route::get('/{product}/remove', 'remove')->name('cart.remove');
+    Route::get('/clear', 'clear')->name('cart.clear');
 });
 
 Route::get("/carts", [CartController::class, "carts"])->name("carts");
@@ -72,9 +73,7 @@ Route::post('/reset-password', [ForgetPasswordController::class, 'resetPassword'
 
 Route::get('/order/create', [OrderController::class, 'createOrder'])->name('order.create');
 
-
 Route::get('/google/auth/redirect', [AuthController::class, "googleRedirect"])->name("google.redirect");
 Route::get('/google/auth/callback', [AuthController::class, "googleCallback"])->name("google.callback");
-Route::get('/github/auth/redirect', [AuthController::class, 'githubRedirect'])->name('github.redirect');
-Route::get('/github/auth/callback', [AuthController::class, 'githubCallback'])->name('github.callback');
-
+Route::get('/steam/auth/redirect', [AuthController::class, 'steamRedirect'])->name('steam.redirect');
+Route::get('/steam/auth/callback', [AuthController::class, 'steamCallback'])->name('steam.callback');

@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
         $products = Product::where("category_id", $categoryId);
         return view ("homepage", [
-            "products" => $products->paginate(7),
+            "products" => $products->paginate(28),
             "categoryId" => $categoryId,
         ]);
     }

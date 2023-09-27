@@ -2,27 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
 
 class CartController extends Controller
 {
     private CartService $cartService;
 
+    public function __construct(CartService $cartService)
+    {
+        $this->cartService = $cartService;
+    }
 
     public function carts()
     {
         $cart = session()->get('cart');
-        return view("cart", [
-            'products' => $cart ? Product::query()->whereIn('id', array_keys($cart))->get() : null,
-            'cart' => $cart,
-        ]);
-    }
 
-    public function __construct(CartService $cartService)
-    {
-//        parent::__construct();
-        $this->cartService = $cartService;
+        return view("cart", [
+            'cart' => $cart,
+            'products' => $cart ? Product::query()->whereIn('id', array_keys($cart))->get() : [],
+        ]);
     }
 
     public function add(Product $product)
@@ -37,7 +35,7 @@ class CartController extends Controller
         $cart = session()->get('cart');
 
         return view('cart', [
-            'products' => $cart ? Product::query()->whereIn('id', array_keys($cart))->get() : null,
+            'cartProducts' => $cart ? Product::query()->whereIn('id', array_keys($cart))->get() : null,
             'cart' => $cart,
             'totalSum' => $this->cartService->getTotalCartSum()
         ]);
@@ -48,5 +46,12 @@ class CartController extends Controller
         $this->cartService->removeProduct($product);
 
         return redirect()->back();
+    }
+
+    public function clear()
+    {
+        session()->forget('cart');
+
+        return redirect()->route("homepage");
     }
 }

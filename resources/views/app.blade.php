@@ -34,7 +34,7 @@
                     </div>
                     <div class="nav__profile-cart" id="cart">
                         <div class="nav__profile-cart-img"></div>
-                        <span class="nav__profile-cart-count">0</span>
+                        <span class="nav__profile-cart-count">{{ $carts?->count() }}</span>
                     </div>
                     <div class="nav__profile-modal" id="profile-modal">
                         <ul class="nav__profile-modal-links">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="cart-modal" id="cart-modal">
                         <div class="cart__modal">
-                            <h5 class="cart__modal-title">1 items in Cart</h5>
+                            <h5 class="cart__modal-title">{{ $carts?->count() }} item(s) in Cart</h5>
 {{--                            @foreach($carts as $cart)--}}
 {{--                            <div class="cart__modal-item">--}}
 {{--                                <div class="cart-modal-item-left">--}}
@@ -72,8 +72,8 @@
 {{--                                </div>--}}
 {{--                            </div>--}}
 {{--                            @endforeach--}}
-                            <p class="cart-total">Total €19,80</p>
-                            <button class="cart-btn-clear-cart">CLEAR CART</button>
+                            <p class="cart-total">Total €{{ $totalSum }}</p>
+                            <a href="{{ route('cart.clear') }}" class="cart-btn-clear-cart">CLEAR CART</a>
                             <a href="{{ route("carts") }}" class="cart-btn-clear-cart">VIEW CART</a>
                         </div>
                     </div>

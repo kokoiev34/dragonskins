@@ -39,7 +39,7 @@ class CartService
 
     public function getTotalCartSum()
     {
-        $cart = session()->get('cart');
+        $cart = session()->get('cart', []);
         $sum = 0;
 
         foreach ($cart as $key => $item) {

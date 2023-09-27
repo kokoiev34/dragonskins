@@ -25,6 +25,10 @@ class SendMessageUserLogin
      */
     public function handle(Login $event): void
     {
-//        Mail::to($event->user->email)->send(new NewLogin($event->user));
+        if (!$event->user->email) {
+            return;
+        }
+
+        Mail::to($event->user->email)->send(new NewLogin($event->user));
     }
 }

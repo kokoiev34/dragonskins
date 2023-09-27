@@ -26,6 +26,10 @@ class EventServiceProvider extends ServiceProvider
             SaveLoginInfo::class,
             SendMessageUserLogin::class,
         ],
+
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            'SocialiteProviders\\Steam\\SteamExtendSocialite@handle',
+        ]
     ];
 
     /**

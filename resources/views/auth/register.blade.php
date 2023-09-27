@@ -29,16 +29,34 @@
                 </div>
                 <form class="sign-up__form" action="{{route("auth.register")}}" method="POST">
                 @csrf
+                    @if($errors->has('name'))
+                        <div class="error">{{ $errors->first('name') }}</div>
+                    @endif
                     <input id="test10" type="text" name="name" class="sign-up__form-input sign-up__form-username" placeholder="Username">
+
+                    @if($errors->has('email'))
+                        <div class="error">{{ $errors->first('email') }}</div>
+                    @endif
                     <input type="email" name="email" class="sign-up__form-input sign-up__form-email" placeholder="Email">
+
+                    @if($errors->has('password'))
+                        <div class="error">{{ $errors->first('password') }}</div>
+                    @endif
                     <input type="password" name="password" class="sign-up__form-input sign-up__form-password" placeholder="Password">
+
                     <input type="password" name="password_confirmation" class="sign-up__form-input sign-up__form-re-password" placeholder="Repeat password">
+                    @if($errors->has('age'))
+                        <div class="error">{{ $errors->first('age') }}</div>
+                    @endif
                     <label class="sign-up__form-checkbox container">I am at least 18 years old
-                        <input type="checkbox">
+                        <input type="checkbox" name="age">
                         <span class="sign-up__form-checkmark checkmark"></span>
                     </label>
+                    @if($errors->has('news'))
+                        <div class="error">{{ $errors->first('news') }}</div>
+                    @endif
                     <label class="sign-up__form-checkbox container">Receive offers and news
-                        <input type="checkbox">
+                        <input type="checkbox" name="news">
                         <span class="sign-up__form-checkmark checkmark"></span>
                     </label>
                     <div class="sign-up__form-policies">
@@ -49,8 +67,8 @@
                 <div class="sign-up__different">or</div>
                 <h3 class="sign-up__different-title">SIGN UP WITH</h3>
                 <div class="sign-up__different-methods">
-                    <a href="index.html" class="sign-up__different-method method-gmail"></a>
-                    <a href="index.html" class="sign-up__different-method method-steam"></a>
+                    <a href="{{ route ("google.redirect") }}" class="sign-up__different-method method-gmail"></a>
+                    <a href="{{ route ("steam.redirect") }}" class="sign-up__different-method method-steam"></a>
                 </div>
             </div>
         </div>

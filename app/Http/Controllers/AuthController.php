@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//use GuzzleHttp\Psr7\Request;
+use App\Http\Requests\RegisterRequest;
 use App\Mail\TestMail;
 use App\Models\User;
 use App\Models\UserInformation;
@@ -45,19 +45,14 @@ class AuthController extends Controller
     public function getRegisterPage()
     {
         return view("auth.register");
-
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $name = $request->input("name");
-        $password = $request->input("password");
-        $email = $request->input("email");
-
         $user = User::create([
-           "name" => $name,
-           "password" => Hash::make($password),
-           "email" => $email
+           "name" => $request->input("name"),
+           "password" => Hash::make($request->input("password")),
+           "email" => $request->input("email")
         ]);
 
         Mail::to($user->email)->send(new TestMail($user));
@@ -110,26 +105,24 @@ class AuthController extends Controller
         return redirect()->route("homepage");
     }
 
-    public function githubRedirect()
+    public function steamRedirect()
     {
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver('steam')->redirect();
     }
 
-    public function GithubCallback()
+    public function steamCallback()
     {
-        $githubUser = Socialite::driver('github')->user();
+        $steamUser = Socialite::driver('steam')->user();
 
-        $email = $githubUser->getEmail();
-        $user = User::query()->where('email', $email)->first();
-        if (!$user) {
-            $user = User::query()->create([
-                'email' => $email,
-                'name' => $githubUser->getName()
-            ]);
-        }
+        $user = User::query()->firstOrCreate([
+            'provider' => 'steam',
+            'social_id' => $steamUser->getId(),
+        ], [
+            'name' => $steamUser->getNickname(),
+        ]);
 
         Auth::login($user);
 
-        return redirect()->route('homepage');
+        return redirect()->route("homepage");
     }
 }
