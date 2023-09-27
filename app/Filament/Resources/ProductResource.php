@@ -3,16 +3,21 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
+use App\Imports\ProductImport;
 use App\Models\Category;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use Mockery\Exception;
 
 class ProductResource extends Resource
 {
@@ -52,6 +57,27 @@ class ProductResource extends Resource
             ])
             ->filters([
                 //
+            ])
+            ->headerActions([
+                Tables\Actions\Action::make('uploadExcel')
+                ->label('Import from excel')
+                ->button()
+                ->action(function ($data) {
+                    try {
+                        Excel::import(new ProductImport(), Storage::disk('public')->path($data['file']));
+
+                        Notification::make()
+                            ->title('Import success.')
+                            ->send();
+                    } catch (Exception $exception) {
+                        Notification::make()
+                            ->title('Error')
+                            ->send();
+                    }
+                })
+                ->form([
+                    Forms\Components\FileUpload::make('file')->label('Excel doc')->disk('public'),
+                ])
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
