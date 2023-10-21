@@ -29,6 +29,6 @@ class SendMessageUserLogin
             return;
         }
 
-        Mail::to($event->user->email)->send(new NewLogin($event->user));
+//        Mail::to($event->user->email)->send(new NewLogin($event->user));
     }
 }
